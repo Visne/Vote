@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Visne/Vote/issues"
   },
-  "homepage": "https://github.com/Visne/Vote#readme"
+  "homepage": "https://github.com/Visne/Vote#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "express": "^4.17.2"
+  }
 }
