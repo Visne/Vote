@@ -178,7 +178,7 @@ app.get(BASE + "oauth/github", (req, res) => {
                             })
                         }
 
-                        res.redirect("/");
+                        res.redirect(BASE);
                     })
                     .catch((error) => {
                         console.log("Error getting user data:")
