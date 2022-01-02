@@ -1,1 +1,11 @@
-<a href="https://github.com/login/oauth/authorize?client_id={{ clientId }}&redirect_uri={{ redirectUri }}">Login with GitHub</a>
+{{#if name}}
+    Your name is <b>{{name}}</b>
+    {{#if profilePictureUrl}}
+        <br><img src="{{profilePictureUrl}}" alt="Profile picture">
+    {{/if}}
+{{else}}
+    You are not logged in.
+    <br>
+    <a href="https://github.com/login/oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}">Login with GitHub</a>
+{{/if}}
+
