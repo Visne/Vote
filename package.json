@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Visne/Vote#readme",
   "dependencies": {
+    "axios": "^0.24.0",
+    "better-sqlite3": "^7.4.6",
+    "cookie-parser": "^1.4.6",
     "express": "^4.17.2",
     "express-handlebars": "^6.0.2"
   }
