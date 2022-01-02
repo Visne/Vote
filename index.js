@@ -20,7 +20,7 @@ if (!Utils.verifyConfig(configPath)) {
 }
 
 // Set base url, if specified
-const BASE = "/" + (config.base === undefined ? "" : config.base);
+const BASE = config.base === undefined ? "/" : config.base;
 
 // Get session expiry time or use default of 15 mins
 const SESSION_EXPIRY = (config.sessionExpiry === undefined ? 15 : config.sessionExpiry) * 60 * 1000;
