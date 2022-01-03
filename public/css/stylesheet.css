@@ -1,0 +1,6 @@
+p {
+    display: flex;
+    justify-content: center;
+    max-width: 1000px;
+    font-size: 100px;
+}

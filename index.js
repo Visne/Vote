@@ -22,8 +22,8 @@ if (!Utils.verifyConfig(configPath)) {
 // Set base url, if specified
 const BASE = config.base === undefined ? "/" : config.base;
 
-// Get session expiry time or use default of 15 mins
-const SESSION_EXPIRY = (config.sessionExpiry === undefined ? 15 : config.sessionExpiry) * 60 * 1000;
+// Get session expiry time or use default of 1 hour (in seconds)
+const SESSION_EXPIRY = (config.sessionExpiry === undefined ? 60 * 60 : config.sessionExpiry) * 1000;
 
 // endregion
 
@@ -60,6 +60,8 @@ app.set("views", Path.join(__dirname, "views"));
 app.use(CookieParser());
 // endregion
 
+app.use(BASE, Express.static(__dirname + "/public"));
+
 // region GET /
 
 // Host index.hbs with main.hbs view
@@ -67,14 +69,16 @@ app.get(BASE, (req, res) => {
     if (req.cookies?.session !== undefined) {
         const query = db.prepare(`
             SELECT * FROM userdata
-            WHERE session_id = '${req.cookies.session}';
+            WHERE session_id = '${req.cookies.session}'
+            AND ${Date.now()} < session_expiry;
         `).get();
 
         // If we can not get the access token, let the user login again
         if (query?.oauth_access_token === undefined) {
             res.render("main", {
                 clientId: config.clientId,
-                redirectUri: config.redirectUri
+                redirectUri: config.redirectUri,
+                base: BASE
             });
             return;
         }
@@ -89,7 +93,8 @@ app.get(BASE, (req, res) => {
                 clientId: config.clientId,
                 redirectUri: config.redirectUri,
                 name: response.data.login,
-                profilePictureUrl: response.data.avatar_url
+                profilePictureUrl: response.data.avatar_url,
+                base: BASE
             });
         })
         .catch((error) => {
@@ -97,13 +102,15 @@ app.get(BASE, (req, res) => {
 
             res.render("main", {
                 clientId: config.clientId,
-                redirectUri: config.redirectUri
+                redirectUri: config.redirectUri,
+                base: BASE
             });
         });
     } else {
         res.render("main", {
             clientId: config.clientId,
-            redirectUri: config.redirectUri
+            redirectUri: config.redirectUri,
+            base: BASE
         });
     }
 });
