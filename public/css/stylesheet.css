@@ -1,5 +1,19 @@
+:root {
+    /* Style */
+    --background-color: #121212;
+    --surface-color: #1d1d1d;
+
+    /* Header/footer style */
+    --header-footer-color: #0f1111;
+    --header-height: 50px;
+
+    /* Centering settings */
+    --content-max-width: 1100px;
+    --side-margin: max(0px, calc((100vw - var(--content-max-width)) / 2));
+}
+
 body {
-    background-color: #181a1b;
+    background-color: var(--background-color);
     color: rgb(235, 235, 235);
     font-family: "Open Sans", sans-serif;
     margin: 0;
@@ -7,10 +21,10 @@ body {
 
 ul {
     list-style-type: none;
-    margin: 4px;
-    padding: 2px;
+    margin: 0;
+    padding: 0;
     width: 200px;
-    background-color: #111111;
+    background-color: var(--surface-color);
 }
 
 li a {
@@ -20,24 +34,38 @@ li a {
     text-decoration: none;
 }
 
-/* Change the link color on hover */
 li a:hover {
-    background-color: #555;
+    background-color: #555555;
     color: white;
 }
 
 .page {
     display: flex;
-    justify-content: center;
-}
-
-.content {
-    max-width: 1100px;
+    flex-direction: column;
 }
 
 .header {
     display: flex;
+    justify-content: center;
     align-items: center;
+
+    /* Sticky */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    /* Style */
+    background-color: var(--header-footer-color);
+    height: var(--header-height);
+}
+
+.header-content {
+    margin-left: var(--side-margin);
+    max-width: var(--content-max-width);
+    display: flex;
+    align-items: center;
+
+    justify-self: stretch;
 }
 
 .header-button {
@@ -48,6 +76,12 @@ li a:hover {
 .container {
     display: flex;
     flex-direction: row;
+    max-width: var(--content-max-width);
+    align-self: center;
+}
+
+.sidebar {
+    background-color: var(--surface-color);
 }
 
 @media (min-width: 800px) {
@@ -55,8 +89,8 @@ li a:hover {
         align-self: start;
         position: -webkit-sticky;
         position: sticky;
-        top: 20px;
-        max-height: 100vh;
+        top: calc(var(--header-height) + 10px);
+        margin-right: 16px;
     }
 }
 
@@ -68,6 +102,8 @@ li a:hover {
 
 .main {
     font-size: 30px;
+    padding: 32px;
+    background-color: var(--surface-color);
 }
 
 .gh-login-button {
@@ -75,6 +111,6 @@ li a:hover {
 }
 
 .footer {
-    background-color: #0f1111;
-    margin: 0;
+    background-color: var(--header-footer-color);
+    height: 100px;
 }
