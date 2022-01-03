@@ -1,9 +1,31 @@
-.container {
+body {
+    background-color: #181a1b;
+    color: rgb(235, 235, 235);
+}
+
+.page {
     display: flex;
     justify-content: center;
 }
 
 .content {
     max-width: 1000px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header-button {
+    margin: 10px;
+    font-size: 25px;
+}
+
+.main {
     font-size: 30px;
+}
+
+.gh-login-button {
+    margin-left: auto;
 }
