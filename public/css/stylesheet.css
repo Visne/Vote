@@ -1,6 +1,29 @@
 body {
     background-color: #181a1b;
     color: rgb(235, 235, 235);
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 4px;
+    padding: 2px;
+    width: 200px;
+    background-color: #111111;
+}
+
+li a {
+    display: block;
+    padding: 4px 8px;
+    color: rgb(235, 235, 235);
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
 }
 
 .page {
@@ -9,7 +32,7 @@ body {
 }
 
 .content {
-    max-width: 1000px;
+    max-width: 1100px;
 }
 
 .header {
@@ -22,10 +45,36 @@ body {
     font-size: 25px;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (min-width: 800px) {
+    .sidebar {
+        align-self: start;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+        max-height: 100vh;
+    }
+}
+
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
 .main {
     font-size: 30px;
 }
 
 .gh-login-button {
     margin-left: auto;
+}
+
+.footer {
+    background-color: #0f1111;
+    margin: 0;
 }
