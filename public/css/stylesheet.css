@@ -1,6 +1,9 @@
-p {
+.container {
     display: flex;
     justify-content: center;
+}
+
+.content {
     max-width: 1000px;
-    font-size: 100px;
+    font-size: 30px;
 }
