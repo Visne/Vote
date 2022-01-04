@@ -3,25 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hi</title>
-    <link rel="stylesheet" type="text/css" href="{{base}}css/stylesheet.css">
+    <title>SS14 Movie Night</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="{{base}}css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{base}}css/fonts.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/ss14-icon.svg" sizes="any" type="image/svg+xml">
 
     <!-- OGP embedding -->
     <meta content="SS14 Movie Night" property="og:title" />
     <meta content="Vote for a movie to watch next!" property="og:description" />
     <meta content="https://visne.xyz/movienight/" property="og:url" />
-    <meta content="https://cdn.discordapp.com/icons/310555209753690112/b061350cfea3d08bfee37c4f027bde64.png?size=128" property="og:image" />
+    <meta content="{{base}}images/ss14-icon.svg" property="og:image" />
     <meta content="#E23229" data-react-helmet="true" name="theme-color" />
 </head>
 <body>
     <div class="page">
         <div class="header">
             <div class="header-content">
-                <a class="header-button">Vote</a>
-                <a class="header-button">Finished</a>
-                <a class="header-button">Dates</a>
+                <img class="header-logo" src="{{base}}images/ss14-icon.svg" alt="SS14 Logo">
+                <a class="header-button" href="{{base}}">Movies</a>
+                <a class="header-button" href="#" onclick="alert('Not implemented yet, sorry!');">Dates</a>
+                {{{ body }}}
             </div>
-            {{{ body }}}
         </div>
         <div class="container">
             <div class="sidebar">
@@ -83,7 +89,7 @@
             </div>
         </div>
         <div class="footer">
-            This is the footer
+            Enjoy this footer placeholder
         </div>
     </div>
 </body>

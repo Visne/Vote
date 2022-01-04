@@ -1,21 +1,21 @@
 :root {
     /* Style */
-    --background-color: #121212;
-    --surface-color: #1d1d1d;
+    --background-color: #181a1b;
+    --foreground-color: #1c1e1f;
+    --accent-color: #e23229;
 
     /* Header/footer style */
     --header-footer-color: #0f1111;
-    --header-height: 50px;
+    --header-height: 80px;
 
     /* Centering settings */
-    --content-max-width: 1100px;
-    --side-margin: max(0px, calc((100vw - var(--content-max-width)) / 2));
+    --content-max-width: 1200px;
 }
 
 body {
     background-color: var(--background-color);
     color: rgb(235, 235, 235);
-    font-family: "Open Sans", sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     margin: 0;
 }
 
@@ -24,7 +24,7 @@ ul {
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: var(--surface-color);
+    background-color: var(--foreground-color);
 }
 
 li a {
@@ -60,17 +60,26 @@ li a:hover {
 }
 
 .header-content {
-    margin-left: var(--side-margin);
+    width: 100%;
     max-width: var(--content-max-width);
     display: flex;
     align-items: center;
-
-    justify-self: stretch;
 }
 
 .header-button {
-    margin: 10px;
-    font-size: 25px;
+    height: inherit;
+    margin: 4px 6px 4px 20px;
+    font-size: 20px;
+    text-decoration: none;
+    color: rgb(235, 235, 235);
+    font-weight: 600;
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.header-logo {
+    height: var(--header-height);
+    padding: 12px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -81,7 +90,7 @@ li a:hover {
 }
 
 .sidebar {
-    background-color: var(--surface-color);
+    background-color: var(--foreground-color);
 }
 
 @media (min-width: 800px) {
@@ -103,14 +112,34 @@ li a:hover {
 .main {
     font-size: 30px;
     padding: 32px;
-    background-color: var(--surface-color);
+    background-color: var(--foreground-color);
 }
 
 .gh-login-button {
+    display: flex;
+    align-items: center;
+
+    font-weight: 600;
+
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+
+    gap: 10px;
+
+    padding: 10px;
+
     margin-left: auto;
+    margin-right: 12px;
+    border-radius: 8px;
 }
 
 .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+
     background-color: var(--header-footer-color);
-    height: 100px;
+    height: 60px;
 }

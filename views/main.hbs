@@ -4,10 +4,9 @@
         <br><img src="{{profilePictureUrl}}" alt="Profile picture">
     {{/if}}
 {{else}}
-    <div class="gh-login-button">
-        You are not logged in.
-        <br>
-        <a href="https://github.com/login/oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}">Login with GitHub</a>
-    </div>
+    <a class="gh-login-button" href="https://github.com/login/oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}">
+        <img src="{{base}}images/github-icon.svg" alt="Github Logo" width="24px">
+        <div>Login with GitHub</div>
+    </a>
 {{/if}}
 
