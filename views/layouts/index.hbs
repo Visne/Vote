@@ -31,66 +31,210 @@
         </div>
         <div class="container">
             <div class="sidebar">
-                <nav>
-                    <ul>
-                        <li><a href="#">option one</a></li>
-                        <li><a href="#">option 2</a></li>
-                        <li><a href="#">option three</a></li>
-                        <li><a href="#">option 4</a></li>
-                        <li><a href="#">opt ion fivefive</a></li>
-                        <li><a href="#">option 6</a></li>
-                        <li><a href="#">option seven seven</a></li>
-                    </ul>
-                </nav>
+                <div class="filter box closed">
+                    <div class="filter-toggle">
+                        Sort By
+                        <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
+                    </div>
+                    <div class="filter-content">
+                        Content
+                    </div>
+                </div>
+                <div class="filter box closed">
+                    <div class="filter-toggle">
+                        Sort By 2
+                        <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
+                    </div>
+                    <div class="filter-content">
+                        Content
+                    </div>
+                </div>
+                <div class="filter box closed">
+                    <div class="filter-toggle">
+                        Show watched movies
+                        <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
+                    </div>
+                    <div class="filter-content">
+                        Content
+                    </div>
+                </div>
             </div>
             <div class="main">
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun
-                t mollit anim id est laborum."
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt exp
-                licabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntu
-                r magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum q
-                uia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
-                labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-                qui dolorem eum fugiat quo voluptas nulla pariatur?"
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun
-                t mollit anim id est laborum."
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt exp
-                licabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolo
-                rem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incid
-                unt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-                qui dolorem eum fugiat quo voluptas nulla pariatur?"
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserun
-                t mollit anim id est laborum."
-                "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt exp
-                licabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia c
-                onsequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolor
-                em ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidu
-                nt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-                exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem
-                vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-                qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" alt="Movie poster">
+                        <div class="movie-content">
+                            <div class="movie-title">
+                                2001: A Space Odyssey <span class="movie-year">(1968)</span>
+                            </div>
+                            <div class="movie-description">
+                                Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <img class="poster" src="https://www.themoviedb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" alt="Movie poster">
+                        <div class="movie-content">
+                            <div class="movie-title">
+                                Dune <span class="movie-year">(2021)</span>
+                            </div>
+                            <div class="movie-description">
+                                Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" alt="Movie poster">
+                        <div class="movie-content">
+                            <div class="movie-title">
+                                2001: A Space Odyssey <span class="movie-year">(1968)</span>
+                            </div>
+                            <div class="movie-description">
+                                Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <img class="poster" src="https://www.themoviedb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" alt="Movie poster">
+                        <div class="movie-content">
+                            <div class="movie-title">
+                                Dune <span class="movie-year">(2021)</span>
+                            </div>
+                            <div class="movie-description">
+                                Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <div class="movie-content">
+                            content
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <div class="movie-content">
+                            content
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <div class="movie-content">
+                            content
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <div class="movie-content">
+                            content
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <div class="movie-content">
+                            content
+                        </div>
+                    </div>
+                </div>
+                <div class="movie">
+                    <div class="upvote">
+                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                        <div class="upvote-counter">0</div>
+                    </div>
+                    <div class="box movie-box">
+                        <div class="movie-content">
+                            content
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer">
             Enjoy this footer placeholder
         </div>
     </div>
+
+    <!-- Open menu item function -->
+    <script>
+        function upvote(element) {
+            const counter = element.parentNode.querySelector(".upvote-counter");
+            const button = element.parentNode.querySelector(".upvote-button");
+
+            if (counter) {
+                counter.textContent = (parseInt(counter.textContent) + 1).toString();
+                counter.classList.add("upvoted");
+            }
+
+            if (button) {
+                button.classList.add("upvoted");
+            }
+        }
+
+        function toggleOpen(element) {
+            element.parentNode.classList.toggle('closed');
+        }
+
+        const upvoteButtons = document.querySelectorAll(".upvote-button")
+        const filterButtons = document.querySelectorAll(".filter-toggle");
+
+        filterButtons.forEach(element => {
+            element.addEventListener("click", () => {
+                toggleOpen(element);
+            });
+        });
+
+        upvoteButtons.forEach(element => {
+            element.addEventListener("click", () => {
+                upvote(element);
+            });
+        });
+    </script>
 </body>
 </html>
