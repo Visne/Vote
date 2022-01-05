@@ -181,7 +181,8 @@ app.get(BASE + "oauth/github", (req, res) => {
                             res.cookie("session", sessionId, {
                                 maxAge: SESSION_EXPIRY,
                                 secure: true,
-                                httpOnly: false
+                                httpOnly: false,
+                                path: BASE
                             })
                         }
 
@@ -210,6 +211,6 @@ app.get(BASE + "oauth/github", (req, res) => {
 
 // Listen on port
 const port = config.port;
-app.listen(port, () => console.log("Listening on http://localhost:" + port));
+app.listen(port, () => console.log("Listening on http://localhost:" + port + BASE));
 
 // endregion

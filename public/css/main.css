@@ -3,8 +3,8 @@
 :root {
     /* Style */
     --background-color: #181a1b;
-    --foreground-color: #1c1e1f;
-    --border-width: 1px;
+    --foreground-color: #2a2d2f;
+    --border-width: 0px;
     --border: var(--border-width) solid #383d3f;
     --poster-height: 260px;
 
@@ -315,7 +315,7 @@ div.filter.closed div.filter-toggle img.filter-chevron {
 }
 
 .movie-year {
-    color: #686d6f;
+    color: #7a8184;
 }
 
 .movie-description {

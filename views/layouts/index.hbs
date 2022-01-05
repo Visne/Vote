@@ -42,7 +42,7 @@
             </div>
             <div class="filter styled-box closed">
                 <div class="filter-toggle">
-                    Filters
+                    Watch Status
                     <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
                 </div>
                 <div class="filter-content">
@@ -51,7 +51,7 @@
             </div>
             <div class="filter styled-box closed">
                 <div class="filter-toggle">
-                    Something Else
+                    Genre
                     <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
                 </div>
                 <div class="filter-content">
@@ -124,7 +124,7 @@
     <!-- Open menu item, upvote button, logout button -->
     <script>
         function logout() {
-            document.cookie = "session=; Max-Age=-1"
+            document.cookie = "session=; Max-Age=-1;secure;path={{base}}"
             window.location.reload();
         }
 
