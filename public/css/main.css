@@ -15,6 +15,7 @@
     /* Header/footer style */
     --header-footer-color: #0f1111;
     --header-height: 80px;
+    --header-button-height: calc(var(--header-height) - 30px);;
 
     /* Layout settings */
     --content-max-width: 1200px;
@@ -103,6 +104,22 @@ body {
     font-family: "Source Sans Pro", sans-serif;
 }
 
+.header-add-button {
+    height: var(--header-button-height);
+    width: var(--header-button-height);
+
+    margin-left: auto;
+    background-color: hsl(119, 55%, 53%);
+    color: white;
+    text-decoration: none;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -12px;
+}
+
 .gh-login-button {
     /* Flexbox */
     display: flex;
@@ -118,6 +135,7 @@ body {
     color: #FFFFFF;
     font-weight: 600;
     text-decoration: none;
+    height: var(--header-button-height);
 }
 
 .logged-in {
@@ -126,9 +144,7 @@ body {
     align-items: center;
     padding: 8px 16px 8px 16px;
     gap: 8px;
-
-    /* Layout */
-    margin-left: auto;
+    height: var(--header-button-height);
 }
 
 .logout-button {
@@ -351,13 +367,13 @@ div.filter.closed div.filter-toggle img.filter-chevron {
 }
 
 div.upvoted {
-    color: #8effa5;
+    color: #66d265;
 }
 
 img.upvoted {
-    /* Turns white svg into #8effa5 */
+    /* Turns white svg into #66d265 */
     /* https://codepen.io/sosuke/pen/Pjoqqp, https://stackoverflow.com/a/43960991 */
-    filter: invert(16%) sepia(28%) saturate(637%) hue-rotate(69deg) brightness(103%) contrast(102%)
+    filter: invert(30%) sepia(59%) saturate(454%) hue-rotate(68deg) brightness(94%) contrast(85%);
 }
 
 /* endregion */
