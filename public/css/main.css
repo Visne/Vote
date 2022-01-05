@@ -24,9 +24,13 @@
 
 /* region <html>/<body> */
 
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
 html {
     box-sizing: border-box;
-    height: 100%;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -38,9 +42,6 @@ body {
     flex-direction: column;
     align-items: center;
 
-    /* Layout */
-    margin: 0;
-    height: 100%;
 
     /* Style */
     background-color: var(--background-color);
