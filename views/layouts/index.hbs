@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SS14 Movie Night</title>
@@ -20,189 +21,113 @@
     <meta content="#E23229" data-react-helmet="true" name="theme-color" />
 </head>
 <body>
-    <div class="page">
-        <div class="header">
-            <div class="header-content">
-                <img class="header-logo" src="{{base}}images/ss14-icon.svg" alt="SS14 Logo">
-                <a class="header-button" href="{{base}}">Movies</a>
-                <a class="header-button" href="#" onclick="alert('Not implemented yet, sorry!');">Dates</a>
-                {{{ body }}}
+    <div class="header">
+        <div class="header-content">
+            <img class="header-logo" src="{{base}}images/ss14-icon.svg" alt="SS14 Logo">
+            <a class="header-button" href="{{base}}">Movies</a>
+            <a class="header-button" href="#" onclick="alert('Not implemented yet :(');">Dates</a>
+            {{{ body }}}
+        </div>
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <div class="filter styled-box closed">
+                <div class="filter-toggle">
+                    Sort By
+                    <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
+                </div>
+                <div class="filter-content">
+                    Content
+                </div>
+            </div>
+            <div class="filter styled-box closed">
+                <div class="filter-toggle">
+                    Filters
+                    <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
+                </div>
+                <div class="filter-content">
+                    Content
+                </div>
+            </div>
+            <div class="filter styled-box closed">
+                <div class="filter-toggle">
+                    Something Else
+                    <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
+                </div>
+                <div class="filter-content">
+                    Content
+                </div>
             </div>
         </div>
-        <div class="container">
-            <div class="sidebar">
-                <div class="filter box closed">
-                    <div class="filter-toggle">
-                        Sort By
-                        <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
-                    </div>
-                    <div class="filter-content">
-                        Content
-                    </div>
+        <div class="movie-list">
+            <div class="movie">
+                <div class="upvote">
+                    <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                    <div class="upvote-counter">0</div>
                 </div>
-                <div class="filter box closed">
-                    <div class="filter-toggle">
-                        Sort By 2
-                        <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
-                    </div>
-                    <div class="filter-content">
-                        Content
-                    </div>
-                </div>
-                <div class="filter box closed">
-                    <div class="filter-toggle">
-                        Show watched movies
-                        <img class="filter-chevron" src="{{base}}images/chevron.svg" width="12em" alt="Chevron">
-                    </div>
-                    <div class="filter-content">
-                        Content
+                <div class="movie-box styled-box">
+                    <img class="poster" src="https://www.themoviedb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" alt="Movie poster">
+                    <div class="movie-title">Dune <span class="movie-year">(2021)</span></div>
+                    <div class="movie-description">
+                        Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.
                     </div>
                 </div>
             </div>
-            <div class="main">
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" alt="Movie poster">
-                        <div class="movie-content">
-                            <div class="movie-title">
-                                2001: A Space Odyssey <span class="movie-year">(1968)</span>
-                            </div>
-                            <div class="movie-description">
-                                Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.
-                            </div>
-                        </div>
+            <div class="movie">
+                <div class="upvote">
+                    <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                    <div class="upvote-counter">0</div>
+                </div>
+                <div class="movie-box styled-box">
+                    <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gQB8Y5RCMkv2zwzFHbUJX3kAhvA.jpg" alt="Movie poster">
+                    <div class="movie-title">Apocalypse Now <span class="movie-year">(1979)</span></div>
+                    <div class="movie-description">
+                        At the height of the Vietnam war, Captain Benjamin Willard is sent on a dangerous mission that, officially, "does not exist, nor will it ever exist." His goal is to locate - and eliminate - a mysterious Green Beret Colonel named Walter Kurtz, who has been leading his personal army on illegal guerrilla missions into enemy territory.
                     </div>
                 </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <img class="poster" src="https://www.themoviedb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" alt="Movie poster">
-                        <div class="movie-content">
-                            <div class="movie-title">
-                                Dune <span class="movie-year">(2021)</span>
-                            </div>
-                            <div class="movie-description">
-                                Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.
-                            </div>
-                        </div>
+            </div>
+            <div class="movie">
+                <div class="upvote">
+                    <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                    <div class="upvote-counter">0</div>
+                </div>
+                <div class="movie-box styled-box">
+                    <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/krKnsfvSJM1PL40tLicRhVQ6kuG.jpg" alt="Movie poster">
+                    <div class="movie-title">Enter the Void <span class="movie-year">(2009)</span></div>
+                    <div class="movie-description">
+                        This psychedelic tour of life after death is seen entirely from the point of view of Oscar, a young American drug dealer and addict living in Tokyo with his prostitute sister, Linda. When Oscar is killed by police during a bust gone bad, his spirit journeys from the past -- where he sees his parents before their deaths -- to the present -- where he witnesses his own autopsy -- and then to the future, where he looks out for his sister from beyond the grave.
                     </div>
                 </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" alt="Movie poster">
-                        <div class="movie-content">
-                            <div class="movie-title">
-                                2001: A Space Odyssey <span class="movie-year">(1968)</span>
-                            </div>
-                            <div class="movie-description">
-                                Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer.
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div class="movie">
+                <div class="upvote">
+                    <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
+                    <div class="upvote-counter">0</div>
                 </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <img class="poster" src="https://www.themoviedb.org/t/p/original/d5NXSklXo0qyIYkgV94XAgMIckC.jpg" alt="Movie poster">
-                        <div class="movie-content">
-                            <div class="movie-title">
-                                Dune <span class="movie-year">(2021)</span>
-                            </div>
-                            <div class="movie-description">
-                                Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <div class="movie-content">
-                            content
-                        </div>
-                    </div>
-                </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <div class="movie-content">
-                            content
-                        </div>
-                    </div>
-                </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <div class="movie-content">
-                            content
-                        </div>
-                    </div>
-                </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <div class="movie-content">
-                            content
-                        </div>
-                    </div>
-                </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <div class="movie-content">
-                            content
-                        </div>
-                    </div>
-                </div>
-                <div class="movie">
-                    <div class="upvote">
-                        <img class="upvote-button" src="{{base}}images/upvote.svg" alt="Upvote button">
-                        <div class="upvote-counter">0</div>
-                    </div>
-                    <div class="box movie-box">
-                        <div class="movie-content">
-                            content
-                        </div>
+                <div class="movie-box styled-box">
+                    <img class="poster" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fjq2xZvWWKZJtg8FGNHXdbVoAAf.jpg" alt="Movie poster">
+                    <div class="movie-title">Eraserhead <span class="movie-year">(1978)</span></div>
+                    <div class="movie-description">
+                        Henry Spencer tries to survive his industrial environment, his angry girlfriend, and the unbearable screams of his newly born mutant child.
                     </div>
                 </div>
             </div>
         </div>
-        <div class="footer">
-            Enjoy this footer placeholder
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            IMDb, IMDbPro, STARmeter and all related logos are trademarks of IMDb.com, Inc. or its affiliates.<br>
+            This product uses the TMDB API but is not endorsed or certified by TMDB.
         </div>
     </div>
 
-    <!-- Open menu item function -->
+    <!-- Open menu item, upvote button, logout button -->
     <script>
+        function logout() {
+            document.cookie = "session=; Max-Age=-1"
+            window.location.reload();
+        }
+
         function upvote(element) {
             const counter = element.parentNode.querySelector(".upvote-counter");
             const button = element.parentNode.querySelector(".upvote-button");

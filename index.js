@@ -181,7 +181,7 @@ app.get(BASE + "oauth/github", (req, res) => {
                             res.cookie("session", sessionId, {
                                 maxAge: SESSION_EXPIRY,
                                 secure: true,
-                                httpOnly: true
+                                httpOnly: false
                             })
                         }
 

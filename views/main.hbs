@@ -1,10 +1,13 @@
 {{#if name}}
-    Your name is <b>{{name}}</b>
-    {{#if profilePictureUrl}}
-        <br><img src="{{profilePictureUrl}}" alt="Profile picture">
-    {{/if}}
+    <div class="logged-in styled-box">
+        <span>Logged in as <b>{{name}}</b></span>
+        <img class="logout-button" onclick="logout();" src="{{base}}images/logout.svg" alt="Log out">
+        {{#if profilePictureUrl}}
+            <img class="profile-picture" src="{{profilePictureUrl}}" alt="Profile picture">
+        {{/if}}
+    </div>
 {{else}}
-    <a class="gh-login-button" href="https://github.com/login/oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}">
+    <a class="gh-login-button styled-box" href="https://github.com/login/oauth/authorize?client_id={{clientId}}&redirect_uri={{redirectUri}}">
         <img src="{{base}}images/github-icon.svg" alt="Github Logo" width="24px">
         <div>Login with GitHub</div>
     </a>
