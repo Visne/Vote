@@ -1,4 +1,10 @@
+const Crypto = require("crypto");
+
 module.exports = {
+    generateSessionId: () => {
+        return Crypto.randomBytes(16).toString("base64");
+    },
+
     verifyConfig: (path) => {
         const config = require(path);
 

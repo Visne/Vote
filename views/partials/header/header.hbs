@@ -1,0 +1,14 @@
+<div class="header">
+    <div class="header-content">
+        <img class="header-logo" src="{{base}}images/ss14-icon.svg" alt="SS14 Logo">
+        <a class="header-button" href="{{base}}">Movies</a>
+        <a class="header-button" href="{{base}}" onclick="alert('Not implemented yet :(');">Dates</a>
+        {{#if name}}
+            {{> header/add-button}}
+            {{> header/logged-in}}
+        {{else}}
+            {{> header/login-button}}
+        {{/if}}
+    </div>
+</div>
+

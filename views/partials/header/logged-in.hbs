@@ -1,0 +1,7 @@
+<div class="logged-in styled-box">
+    <span>Logged in as <b>{{name}}</b></span>
+    <img class="logout-button" onclick="logout('{{base}}');" src="{{base}}images/logout.svg" alt="Log out">
+    {{#if profilePictureUrl}}
+        <img class="profile-picture" src="{{profilePictureUrl}}" alt="Profile picture">
+    {{/if}}
+</div>
