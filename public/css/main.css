@@ -372,10 +372,12 @@ div.filter.closed div.filter-toggle img.filter-chevron {
     cursor: pointer;
 }
 
+/*noinspection CssUnusedSymbol*/
 div.upvoted {
     color: #66d265;
 }
 
+/*noinspection CssUnusedSymbol*/
 img.upvoted {
     /* Turns white svg into #66d265 */
     /* https://codepen.io/sosuke/pen/Pjoqqp, https://stackoverflow.com/a/43960991 */
