@@ -33,8 +33,8 @@ const SESSION_EXPIRY = (config.sessionExpiry === undefined ? 60 * 60 : config.se
 db.prepare(`CREATE TABLE IF NOT EXISTS userdata
             (
                 id                 INTEGER PRIMARY KEY, -- Primary ID, alias for ROWID
-                oauth_id           INTEGER,             -- ID provided by OAuth provider
-                oauth_provider     TEXT,                -- OAuth provider
+                oauth_id           INTEGER NOT NULL,    -- ID provided by OAuth provider
+                oauth_provider     TEXT NOT NULL,       -- OAuth provider
                 oauth_access_token TEXT,                -- Access token for OAuth provider
                 session_id         TEXT,                -- Session ID cookie, unique and unguessable
                 session_expiry     INTEGER,             -- Expiry of session, in milliseconds since 1 Jan 1970
