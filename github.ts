@@ -11,7 +11,7 @@ module.exports = class GitHub {
      * Using a token gotten from GitHub, get an access token.
      * Either throws an error, or returns a valid access token.
      * @param code The token gotten from GitHub.
-     * @returns Promise with access token.
+     * @returns {Promise} Promise with access token.
      */
     getAccessToken(code) {
         return Axios.post("https://github.com/login/oauth/access_token",
@@ -37,7 +37,10 @@ module.exports = class GitHub {
     }
 
     /**
-     *
+     * Get the user data associated with an access token.
+     * @param accessToken The access token of the user.
+     * @returns {Promise} The user data, stored in an object.
+     * @throws If failed to get user data.
      */
     getUserData(accessToken) {
         return Axios.get("https://api.github.com/user",

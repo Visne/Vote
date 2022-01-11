@@ -1,0 +1,28 @@
+.add-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.add-box {
+    padding: 24px;
+}
+
+.fail-reason {
+    background-color: var(--fail-color);
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.add-buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 16px;
+}
+
+.no-button {
+    background-color: var(--fail-color);
+}

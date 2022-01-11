@@ -1,0 +1,16 @@
+<div class="movie-box styled-box">
+    <img class="poster" src="{{#if this.poster}}{{this.poster}}{{else}}{{base}}images/missing.png{{/if}}"
+         alt="{{#if this.title}}{{this.title}}{{else}}Movie{{/if}} poster">
+
+    <div class="movie-title">
+        {{#if this.title}}{{this.title}}{{else}}Unknown{{/if}}
+        <span class="movie-year">({{#if this.year}}{{this.year}}{{else}}unknown{{/if}})</span>
+    </div>
+    <div class="movie-description">
+        {{#if this.description}}
+            {{this.description}}
+        {{else}}
+            <span class="movie-description-missing">Description missing</span>
+        {{/if}}
+    </div>
+</div>

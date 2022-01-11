@@ -7,8 +7,10 @@
     <title>SS14 Movie Night</title>
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{{base}}css/main.css">
     <link rel="stylesheet" type="text/css" href="{{base}}css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="{{base}}css/main.css">
+    <link rel="stylesheet" type="text/css" href="{{base}}css/movie-list.css">
+    <link rel="stylesheet" type="text/css" href="{{base}}css/add.css">
 
     <!-- Favicon -->
     <link rel="icon" href="images/ss14-icon.svg" sizes="any" type="image/svg+xml">
@@ -22,14 +24,7 @@
 </head>
 <body>
     {{> header/header}}
-    <div class="content">
-        {{> content/sidebar/sidebar}}
-        <div class="movie-list">
-            {{#each movies}}
-                {{> content/movie/movie}}
-            {{/each}}
-        </div>
-    </div>
+    {{{body}}}
     {{> footer/footer}}
 
     <script src="{{base}}js/index.js"></script>

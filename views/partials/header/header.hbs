@@ -3,7 +3,7 @@
         <img class="header-logo" src="{{base}}images/ss14-icon.svg" alt="SS14 Logo">
         <a class="header-button" href="{{base}}">Movies</a>
         <a class="header-button" href="{{base}}" onclick="alert('Not implemented yet :(');">Dates</a>
-        {{#if name}}
+        {{#if loggedIn}}
             {{> header/add-button}}
             {{> header/logged-in}}
         {{else}}

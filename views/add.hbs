@@ -1,0 +1,35 @@
+<div class="add-content content">
+    <div class="title">Add Movie</div>
+    <div class="styled-box add-box">
+        <div class="content-title">
+            Add ID
+        </div>
+        Input an ID or URL from <a target="_blank" rel="noopener noreferrer" href="https://www.themoviedb.org/">
+        The Movie Database</a> or <a target="_blank" rel="noopener noreferrer" href="https://www.imdb.com/">IMDb</a>,
+        and the metadata will be grabbed for you automatically.
+
+        {{#if reason}}
+            <div class="fail-reason">
+                Failed: {{reason}}
+            </div>
+        {{/if}}
+
+        <form class="input-submit-inline" method="get">
+            <label for="input" hidden>ID or URL</label>
+            <input id="input" type="text" name="id" placeholder="ID or URL">
+            <button type="submit" class="styled-button">Submit</button>
+        </form>
+    </div>
+
+    {{#if title}}
+        <div class="title">Does this look correct?</div>
+        <div>
+            {{> content/movie/movie-box}}
+        </div>
+
+        <div class="add-buttons">
+            <a href="{{base}}add" class="styled-button no-button">No, retry</a>
+            <a href="{{base}}add?add={{id}}" class="styled-button">Yes, add</a>
+        </div>
+    {{/if}}
+</div>
