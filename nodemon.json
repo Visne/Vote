@@ -1,6 +1,5 @@
 {
   "restartable": "rs",
-  "verbose": true,
   "execMap": {
     "ts": "node --inspect --require ts-node/register"
   },
