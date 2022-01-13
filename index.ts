@@ -1,15 +1,15 @@
-"use strict";
 const configPath = "./config.json"
 const config = require(configPath);
-const Utils = require("./utils");
-const Path = require("path");
-const Express = require("express");
-const ExpressHandlebars = require("express-handlebars");
-const CookieParser = require('cookie-parser')
-const GitHub = require("./github");
-const Database = require("./database");
-const MovieDB = require("./moviedb");
-const Axios = require("axios");
+
+import * as Path from "path";
+import * as Express from "express";
+import * as ExpressHandlebars from "express-handlebars";
+import * as CookieParser from "cookie-parser";
+
+import Utils from "./utils";
+import GitHub from "./github";
+import Database, { MovieData } from "./database";
+import MovieDB from "./moviedb";
 
 // region Config verification
 
@@ -18,23 +18,23 @@ if (!Utils.verifyConfig(configPath)) {
 }
 
 // Set base url, if specified
-const BASE = config.base === undefined ? "/" : config.base;
+const BASE: string = config.base === undefined ? "/" : config.base;
 
 // Get session expiry time or use default of 1 hour (in seconds)
-const SESSION_EXPIRY = (config.sessionExpiry === undefined ? 60 * 60 : config.sessionExpiry) * 1000;
+const SESSION_EXPIRY: number = (config.sessionExpiry === undefined ? 60 * 60 : config.sessionExpiry) * 1000;
 
-const DEFAULT_VIEW = {
+const DEFAULT_VIEW: { clientId: string, redirectUri: string, base: string } = {
     clientId: config.clientId,
     redirectUri: config.redirectUri,
-    base: BASE
-}
+    base: BASE,
+};
 
 // endregion
 
-const app = Express();
-const db = new Database("database.db");
-const github = new GitHub(config.clientId, config.clientSecret);
-const movieDb = new MovieDB(config.tmdbApiKey);
+const app: Express.Express = Express();
+const db: Database = new Database("database.db");
+const github: GitHub = new GitHub(config.clientId, config.clientSecret);
+const movieDb: MovieDB = new MovieDB(config.tmdbApiKey);
 
 // region Setup
 
@@ -44,7 +44,7 @@ db.createTablesIfNotExists();
 // Set up rendering engine
 app.engine(".hbs", ExpressHandlebars.engine({
     extname: ".hbs",
-    defaultLayout: "index"
+    defaultLayout: "index",
 }));
 app.set("view engine", ".hbs");
 app.set("views", Path.join(__dirname, "views"));
@@ -56,23 +56,6 @@ app.use(CookieParser());
 app.use(BASE, Express.static(__dirname + "/public"));
 
 // endregion
-
-let MOVIES_VIEW = {
-    movies: [
-        {
-            title: "Dune",
-            year: 2021,
-            description: "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
-            poster: "https://www.themoviedb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-        },
-        {
-            title: "Apocalypse Now",
-            year: 1979,
-            description: "At the height of the Vietnam war, Captain Benjamin Willard is sent on a dangerous mission that, officially, \"does not exist, nor will it ever exist.\" His goal is to locate - and eliminate - a mysterious Green Beret Colonel named Walter Kurtz, who has been leading his personal army on illegal guerrilla missions into enemy territory.",
-            poster: "https://www.themoviedb.org/t/p/w500/gQB8Y5RCMkv2zwzFHbUJX3kAhvA.jpg",
-        },
-    ]
-}
 
 // Log in using session cookie
 app.use((req, res, next) => {
@@ -109,6 +92,17 @@ app.use((req, res, next) => {
 
 // Host index.hbs with header.hbs view
 app.get(BASE, (req, res) => {
+    let movies: MovieData[] = db.getMovies();
+
+    let MOVIES_VIEW = {
+        movies: movies.map(movie => ({
+            title: movie.title,
+            description: movie.overview,
+            poster: movie.poster_path ? "https://www.themoviedb.org/t/p/w500" + movie.poster_path : "",
+            year: new Date(parseInt(movie.release_date)).getUTCFullYear(),
+        }))
+    }
+
     res.render("movie-list", {
         loggedIn: res.locals.loggedIn,
         name: res.locals.user?.login,
@@ -130,13 +124,41 @@ app.get(BASE + "add", async (req, res) => {
             return;
         }
 
+        if (typeof req.query.add === "string") {
+            await movieDb.getMovieDetails(parseInt(req.query.add))
+                .then(async ({ movieData: movie, reason }) => {
+                    if (reason) {
+                        res.render("add", {
+                            loggedIn: res.locals.loggedIn,
+                            name: res.locals.user?.login,
+                            profilePictureUrl: res.locals.user?.avatar_url,
+                            reason: reason,
+                            ...DEFAULT_VIEW,
+                        });
+                        return;
+                    }
+
+                    db.insertMovieData(movie);
+                })
+                .then(() => {
+                    res.render("add", {
+                        loggedIn: res.locals.loggedIn,
+                        name: res.locals.user?.login,
+                        profilePictureUrl: res.locals.user?.avatar_url,
+                        success: "Successfully added!",
+                        ...DEFAULT_VIEW,
+                    });
+                });
+            return;
+        }
+
         // Render default page if no id param
-        if (!req.query?.id) {
+        if (typeof req.query.id !== "string" || !req.query?.id) {
             res.render("add", {
                 loggedIn: res.locals.loggedIn,
                 name: res.locals.user?.login,
                 profilePictureUrl: res.locals.user?.avatar_url,
-                ...DEFAULT_VIEW
+                ...DEFAULT_VIEW,
             });
             return;
         }
@@ -145,51 +167,53 @@ app.get(BASE + "add", async (req, res) => {
         let idOrFail = Utils.movieIdOrUrlToId(decodeURI(req.query.id));
 
         if (idOrFail.imdbId) {
-            await movieDb.getIdFromImdbId(idOrFail.imdbId)
-                .then((id) => {
+            const imdbId = idOrFail.imdbId as string;
+
+            await movieDb.getIdFromImdbId(imdbId)
+                .then(({id, reason}) => {
                     if (id) {
+                        idOrFail.tmdbId = id;
+                        return;
+                    }
 
-                    }
-                });
-
-            await Axios.get(`https://api.themoviedb.org/3/find/${idOrFail.imdbId}`,
-                {
-                    params: {
-                        api_key: config.tmdbApiKey,
-                        external_source: "imdb_id",
-                    }
-                })
-                .then((response) => {
-                    if (response.status === 200) {
-                        idOrFail.tmdbId = response.data.movie_results[0].id;
-                    } else if (response.status === 404) {
-                        idOrFail.reason = "Movie is on IMDb, but not linked to TMDB! Try searching for the movie on TMDB.";
-                    } else {
-                        throw new Error(response.data.status_message);
-                    }
+                    idOrFail.reason = reason;
                 });
         }
 
-        let MOVIE_EXAMPLE = {};
+        type TmdbMovie = {
+            id?: number;
+            title?: string;
+            year?: number;
+            description?: string;
+            poster?: string;
+        }
+
+        let MOVIE_EXAMPLE: TmdbMovie = {};
 
         if (idOrFail.tmdbId) {
-            await Axios.get(`https://api.themoviedb.org/3/movie/${idOrFail.tmdbId}`,
-                {
-                    params: {
-                        api_key: config.tmdbApiKey,
+            let sent: boolean = await movieDb.getMovieDetails(idOrFail.tmdbId)
+                .then(({ movieData: movie, reason }) => {
+                    if (reason) {
+                        res.render("add", {
+                            loggedIn: res.locals.loggedIn,
+                            name: res.locals.user?.login,
+                            profilePictureUrl: res.locals.user?.avatar_url,
+                            reason: reason,
+                            ...DEFAULT_VIEW,
+                        });
+                        return true;
                     }
-                })
-                .then((response) => {
-                    if (response.status === 200) {
-                        MOVIE_EXAMPLE.id = idOrFail.tmdbId;
-                        MOVIE_EXAMPLE.title = response.data.title;
-                        MOVIE_EXAMPLE.year = new Date(response.data.release_date).getFullYear();
-                        MOVIE_EXAMPLE.description = response.data.overview;
-                        MOVIE_EXAMPLE.poster = "https://www.themoviedb.org/t/p/w500" + response.data.poster_path;
-                    } else {
-                        throw new Error(response.data.status_message);
+
+                    MOVIE_EXAMPLE = {
+                        id: idOrFail.tmdbId,
+                        title: movie.title,
+                        year: new Date(movie.release_date).getUTCFullYear(),
+                        description: movie.overview,
+                        poster: movie.poster_path ? "https://www.themoviedb.org/t/p/w500" + movie.poster_path : "",
                     }
                 });
+
+            if (sent) return;
         }
 
         // Display page
@@ -202,8 +226,9 @@ app.get(BASE + "add", async (req, res) => {
             ...DEFAULT_VIEW,
         });
     } catch (error) {
+        console.log(error.stack);
         console.log(error.message);
-        res.send(error.message);
+        Utils.sendErrorResponse(res, error.message);
     }
 });
 
@@ -215,7 +240,7 @@ app.get(BASE + "add", async (req, res) => {
 // Attempt login using GitHub OAuth
 app.get(BASE + "oauth/github", async (req, res) => {
     // Check if code param is present and do basic test
-    if (req.query.code === undefined || req.query.code.replace(/\s/g, "").length === 0) {
+    if (typeof req.query.code !== "string" || req.query.code.replace(/\s/g, "").length === 0) {
         Utils.sendErrorResponse(res, "Invalid code")
         return;
     }
@@ -224,55 +249,40 @@ app.get(BASE + "oauth/github", async (req, res) => {
     const userDatePromise = accessTokenPromise.then(github.getUserData);
 
     Promise.all([accessTokenPromise, userDatePromise]).then(([accessToken, userData]) => {
-        const sessionId = Utils.generateSessionId();
-        const dbExp = Date.now() + SESSION_EXPIRY; // Expiry time to store in database
+            const sessionId = Utils.generateSessionId();
+            const dbExp = Date.now() + SESSION_EXPIRY; // Expiry time to store in database
 
-        if (userData.id === undefined) {
-            console.log(userData);
+            if (userData.id === undefined) {
+                console.log(userData);
 
-            throw new Error("Tried to insert undefined oauth_id");
-        }
+                throw new Error("Tried to insert undefined oauth_id");
+            }
 
-        // Insert new user entry, or update existing
-        db.database.prepare(`
-                    INSERT INTO users
-                    (
-                        oauth_id,
-                        oauth_provider,
-                        oauth_access_token,
-                        session_id,
-                        session_expiry
-                    )
-                    VALUES
-                    (
-                        '${userData.id}',
-                        'github',
-                        '${accessToken}',
-                        '${sessionId}',
-                        '${dbExp}'
-                    )
-                    ON CONFLICT(oauth_id, oauth_provider)
-                    DO UPDATE SET
-                        oauth_access_token='${accessToken}',
-                        session_id='${sessionId}',
-                        session_expiry='${dbExp}';
-                `).run();
+            // Insert new user entry, or update existing
+            db.insertGithubUserData({
+                oauth_id: userData.id,
+                oauth_provider: 'github',
+                oauth_access_token: accessToken,
+                session_id: sessionId,
+                session_expiry: dbExp,
+            });
 
-        // Set session cookie
-        res.cookie("session", sessionId, {
-            maxAge: SESSION_EXPIRY,
-            secure: true,
-            httpOnly: false,
-            path: BASE
+            // Set session cookie
+            res.cookie("session", sessionId, {
+                maxAge: SESSION_EXPIRY,
+                secure: true,
+                httpOnly: false,
+                path: BASE
+            })
+
+            // Return user to movie-list page
+            res.redirect(BASE);
         })
-
-        // Return user to movie-list page
-        res.redirect(BASE);
-    })
-    .catch((error) => {
-        console.log(error.message);
-        Utils.sendErrorResponse(res, error.message);
-    });
+        .catch((error: Error) => {
+            console.log(error.message);
+            console.log(error.stack);
+            Utils.sendErrorResponse(res, error.message);
+        });
 });
 
 // endregion

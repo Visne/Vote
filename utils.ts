@@ -1,10 +1,15 @@
-const Crypto = require("crypto");
+import { randomBytes } from "crypto";
 
-module.exports = {generateSessionId: () => {
-        return Crypto.randomBytes(16).toString("base64");
-    }, sendErrorResponse(response, message) {
+export default class Utils {
+    public static generateSessionId(): string {
+        return randomBytes(16).toString("base64");
+    }
+
+    public static sendErrorResponse(response, message): void {
         response.send(`Something went wrong, please try again. (${message})`);
-    }, verifyConfig: (path) => {
+    }
+
+    public static verifyConfig(path): boolean {
         const config = require(path);
 
         if (!config.hasOwnProperty("clientId")) {
@@ -21,12 +26,14 @@ module.exports = {generateSessionId: () => {
         }
 
         return true;
-    }, /**
+    }
+
+    /**
      * Turns a TMDB or IMDb URL or ID into an ID, returns ID on success and reason on failure.
      * @param idOrUrl
      * @returns An object with id and reason parameters, one of which is defined.
      */
-    movieIdOrUrlToId(idOrUrl) {
+    public static movieIdOrUrlToId(idOrUrl: string): TmdbId | ImdbId | Reason {
         if (idOrUrl === null || idOrUrl === undefined || idOrUrl.length === 0) {
             return { reason: "ID or URL is empty!" };
         }
@@ -42,8 +49,8 @@ module.exports = {generateSessionId: () => {
                     const possibleId = url.pathname.split(/[\/-]/)[2];
 
                     // Return ID if matches with ID regex
-                    if (possibleId.match(/^\d{1,8}$/)) {
-                        return { tmdbId: possibleId };
+                    if (/^\d{1,8}$/.test(possibleId)) {
+                        return { tmdbId: parseInt(possibleId) };
                     } else {
                         return { reason: "The URL is a valid TMDB URL, but the ID is empty or invalid!" };
                     }
@@ -53,14 +60,12 @@ module.exports = {generateSessionId: () => {
             } else if (url.hostname === "www.imdb.com") {
                 if (url.pathname.startsWith("/title")) {
                     // Get ID from url
-                    const possibleId = url.pathname.split("/")[2];
+                    const possibleId: string = url.pathname.split("/")[2];
 
                     // Return ID if matches with ID regex
-                    if (/^tt\d{7,8}$/.test(possibleId)) {
+                    if (/^tt\d{7}/.test(possibleId)) {
                         return { imdbId: possibleId };
                     } else {
-                        console.log(possibleId);
-                        console.log(/^tt\d{7,8}$/.test(possibleId));
                         return { reason: "The URL is a valid IMDb URL, but the ID is empty or invalid!" };
                     }
                 } else {
@@ -72,12 +77,17 @@ module.exports = {generateSessionId: () => {
             }
         } catch (e) {
             // ID is not a URL, check if valid ID instead
-            if (idOrUrl.match(/^tt\d{7}$/)) {
+            if (/^tt\d{7}/.test(idOrUrl)) {
                 return { imdbId: idOrUrl };
-            } else if (idOrUrl.match(/^\d{1,8}$/)) {
-                return { tmdbId: idOrUrl };
+            } else if (/^\d{1,8}$/.test(idOrUrl)) {
+                return { tmdbId: parseInt(idOrUrl) };
             } else {
                 return { reason: "Not a valid ID or URL (make sure you did not forget https://)!" };
             }
         }
-    }}
+    }
+}
+
+export type TmdbId = { tmdbId: number, imdbId?: never, reason?: never };
+export type ImdbId = { tmdbId?: never, imdbId: string, reason?: never };
+export type Reason = { tmdbId?: never, imdbId?: never, reason: string };

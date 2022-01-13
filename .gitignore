@@ -2,3 +2,10 @@
 /config.json
 /node_modules
 /database.db
+/database.db-shm
+/database.db-wal
+/database.js
+/github.js
+/index.js
+/moviedb.js
+/utils.js

@@ -9,8 +9,12 @@
         and the metadata will be grabbed for you automatically.
 
         {{#if reason}}
-            <div class="fail-reason">
+            <div class="status fail-status">
                 Failed: {{reason}}
+            </div>
+        {{else if success}}
+            <div class="status success-status">
+                {{success}}
             </div>
         {{/if}}
 

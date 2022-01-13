@@ -1,0 +1,8 @@
+{
+  "restartable": "rs",
+  "verbose": true,
+  "execMap": {
+    "ts": "node --inspect --require ts-node/register"
+  },
+  "ext": "js,json,ts"
+}

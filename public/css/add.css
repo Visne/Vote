@@ -9,12 +9,19 @@
     padding: 24px;
 }
 
-.fail-reason {
-    background-color: var(--fail-color);
-    margin: 16px;
+.status {
+    margin: 16px 0 16px 0;
     padding: 16px;
     border-radius: 8px;
     font-weight: 600;
+}
+
+.fail-status {
+    background-color: var(--fail-color);
+}
+
+.success-status {
+    background-color: green;
 }
 
 .add-buttons {
