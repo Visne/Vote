@@ -144,13 +144,29 @@ div.filter.closed div.filter-toggle img.filter-chevron {
 }
 
 /* Mobile poster */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .poster {
         visibility: hidden;
     }
 
     .movie-box {
         grid-template-columns: 0 [poster-text] auto;
+    }
+
+    .header-logo {
+        display: none;
+    }
+
+    .header-content {
+        gap: 16px;
+    }
+
+    .header-add-button {
+        margin-right: -4px;
+    }
+
+    .logged-in-as {
+        display: none;
     }
 }
 

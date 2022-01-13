@@ -124,31 +124,32 @@ app.get(BASE + "add", async (req, res) => {
             return;
         }
 
+        let viewSuccess = null;
+        let viewReason = null;
+
         if (typeof req.query.add === "string") {
             await movieDb.getMovieDetails(parseInt(req.query.add))
                 .then(async ({ movieData: movie, reason }) => {
                     if (reason) {
-                        res.render("add", {
-                            loggedIn: res.locals.loggedIn,
-                            name: res.locals.user?.login,
-                            profilePictureUrl: res.locals.user?.avatar_url,
-                            reason: reason,
-                            ...DEFAULT_VIEW,
-                        });
-                        return;
+                        viewReason = reason;
+                    } else {
+                        if (!db.insertMovieData(movie)) {
+                            viewReason = "This movie is already in the list!";
+                        } else {
+                            viewSuccess = "Successfully added!";
+                        }
                     }
-
-                    db.insertMovieData(movie);
-                })
-                .then(() => {
-                    res.render("add", {
-                        loggedIn: res.locals.loggedIn,
-                        name: res.locals.user?.login,
-                        profilePictureUrl: res.locals.user?.avatar_url,
-                        success: "Successfully added!",
-                        ...DEFAULT_VIEW,
-                    });
                 });
+
+            res.render("add", {
+                loggedIn: res.locals.loggedIn,
+                name: res.locals.user?.login,
+                profilePictureUrl: res.locals.user?.avatar_url,
+                reason: viewReason,
+                success: viewSuccess,
+                ...DEFAULT_VIEW,
+            });
+
             return;
         }
 
