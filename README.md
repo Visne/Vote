@@ -1,2 +1,2 @@
 # Vote
-Voting web app
+A simple voting webapp to vote on movies to watch
